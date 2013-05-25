@@ -3,9 +3,10 @@ from werkzeug import check_password_hash, generate_password_hash
 
 from app import db
 from app.users.models import User
-from app import requires_login
+from app.disasters.models import Disaster
+from app.bulletins.models import Bulletin
 
-mod = Blueprint('users', __name__)
+mod = Blueprint('admin', __name__)
 
 @mod.before_request
 def admin_before_request():
@@ -13,19 +14,14 @@ def admin_before_request():
         return redirect(url_for('not_found'))
 
 @mod.route('/admin')
-def login():
+def admin():
     return render_template('admin/index.html')
-
-"""
-    ### Users
-    General users of the system - Officials, Premier, Sysadmin
-"""
 
 @mod.route('/admin/users')
 def admin_users():
     return render_template('admin/users/index.html')
 
-@mod.route('/admin/users/add', method = ['GET', 'POST'])
+@mod.route('/admin/users/add', methods = ['GET', 'POST'])
 def admin_users_add():
     if request.method == 'GET':
         return render_template('/admin/users/add.html')
@@ -46,16 +42,11 @@ def admin_users_edit(id):
         db.session.commit()
         return render_template(url_for('admin.admin_users') + '#edit')
 
-"""
-    ### Disasters ###
-    Zones with a disaster hit. Personnel are deployed to here.
-"""
-
 @mod.route('/admin/disasters')
 def admin_disasters():
     return render_template('admin/disasters/index.html')
 
-@mod.route('/admin/disasters/add', method = ['GET', 'POST'])
+@mod.route('/admin/disasters/add', methods = ['GET', 'POST'])
 def admin_disasters_add():
     if request.method == 'GET':
         return render_template('/admin/disasters/add.html')
@@ -78,16 +69,11 @@ def admin_disasters_edit(id):
         db.session.commit()
         return render_template(url_for('admin.admin_disasters') + '#edit')
 
-"""
-    ### Personnel ###
-    Deployed persons to an emergency area.
-"""
-
 @mod.route('/admin/personnel')
 def admin_personnel(id):
     return render_template('admin/personnel/index.html')
 
-@mod.route('/admin/personnel/add', method = ['GET', 'POST'])
+@mod.route('/admin/personnel/add', methods = ['GET', 'POST'])
 def admin_personnel_add():
     if request.method == 'GET':
         return render_template('/admin/personnel/add.html')
@@ -97,11 +83,11 @@ def admin_personnel_add():
         db.session.commit()
         return render_template(url_for('admin.admin_personnel') + '#add')
 
-@mod.route('/admin/personnel/edit/<id>', method = ['GET', 'POST'])
+@mod.route('/admin/personnel/edit/<id>', methods = ['GET', 'POST'])
 def admin_personnel_edit(id):
     personnel = Personnel.query.get(id)
     if request.method == 'GET':
-        return render_template('/admin/personnel/edit.html'. personnel = personnel)
+        return render_template('/admin/personnel/edit.html', personnel = personnel)
     else:
         personnel.name = request.form['personnel-name']
         personnel.email = request.form['personnel-email']

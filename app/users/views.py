@@ -15,5 +15,6 @@ def login():
         user = User.query.filter_by(email = request.form['login-email']).first()
         if user and check_password_hash(user.password, request.form['login-password']):
             session['uid'] = user.id
+            return redirect(url_for('index'))
         else:
             return render_template('user/login.html' + '#badlogin')   

@@ -1,1 +1,36 @@
- 
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>{% if title %}{{ title }} ::{% endif %}QDiMS</title>
+        <link rel='stylesheet' href='/static/css/core.css'>
+        <script src='/static/js/core.js'></script>
+    </head>
+    <body>
+        <header>
+            <section class='content'>
+                <h1 id='title'>QDiNS</h1>
+                <span id='subtitle'>Queensland Disaster Notification System</span>
+                <nav id='navigation-top'>
+                    <a href='/'>Home</a>
+                    <a href='/bulletins'>Bulletins</a>
+                    <a href='/disasters'>Disasters</a>
+                    <a href='/login'>Staff Login</a>
+                    {% if g.user and g.user.role > 3 %}
+                    <a href='/admin'>Admin</a>
+                    {% endif %}
+                </nav>
+            </section>
+        </header>
+        <main>
+            <section class='content'>
+            {% block body %}
+            {% endblock %}
+            </section>
+        </main>
+        <footer>
+            <section class='content'>
+                Copyright &copy; 2012 - 2013 <a href='http://www.qld.gov.au/'>Queensland Government</a>.
+            </section>
+        </footer>
+    </body>
+</html>

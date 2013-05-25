@@ -1,0 +1,14 @@
+{% extends 'layout.html' %}
+{% block body %}
+<h2>Administration Panel</h2>
+<nav id='admin-sidebar'>
+<a href='/admin/users'>User Management</a>
+<a href='/admin/disasters'>Disaster Management</a>
+<a href='/admin/bulletins'>Bulletin Management</a>
+<a href='/admin/personnel'>Personnel Management</a>
+</nav>
+<section class='righttwothird'>
+{% block adminbody %}
+{% endblock %}
+</section>
+{% endblock %}

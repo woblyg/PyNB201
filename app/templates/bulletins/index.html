@@ -1,0 +1,11 @@
+{% extends 'layout.html' %}
+{% block body %}
+<h1>QDiNS Bulletins</h1>
+{% for bulletin in bulletins %}
+<article class='bulletin-overview'>
+    <h2>{{ bulletin.title }}</h2>
+    <p>{{ bulletin.body[:247] }}...</p>
+    <span class='meta'>Posted on {{ bulletin.posttime }}. <a href='/bulletins/{{ bulletin.id }}'>Read more...</a></span>
+</article>
+{% endfor %}
+{% endblock %}

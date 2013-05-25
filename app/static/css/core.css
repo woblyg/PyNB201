@@ -1,0 +1,171 @@
+@font-face {
+    font-family: 'Alef';
+    font-style: normal;
+    font-weight: 400;
+    src: local('Alef Regular'), local('Alef-Regular'), url(http://themes.googleusercontent.com/static/fonts/alef/v1/C8wmYJieZdfX3SNk-GwKVA.woff) format('woff');
+}
+@font-face {
+    font-family: 'Alef';
+    font-style: normal;
+    font-weight: 700;
+    src: local('Alef Bold'), local('Alef-Bold'), url(http://themes.googleusercontent.com/static/fonts/alef/v1/-Kr5IHxOfJcJ-pnH-9NRPA.woff) format('woff');
+}
+
+* {
+    margin: 0;
+    padding: 0;
+}
+
+html {
+    position: relative;
+    min-height: 100%;
+}
+
+body {
+    margin-bottom: 120px;
+    font: 16px/150% 'Alef', 'Helvetica', 'Open Sans', 'DejaVu Sans', 'Trebuchet MS', 'Arial', sans-serif;
+}
+
+h1 {
+    font-size: 2em;
+}
+
+h2 {
+    font-size: 1.5em;
+    margin: 25px 0 15px;
+}
+
+a:link, a:visited {
+    color: inherit;
+    text-align: center;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+a:hover {
+    color: #0bf
+}
+
+header {
+    height: 120px;
+    margin-bottom: 25px;
+    line-height: 120px;
+    background: #041e2b;
+    color: #eee;
+}
+
+    #title {
+        float: left;
+        display: inline-block;
+    }
+    
+    #subtitle {
+        float: left;
+        display: none;
+    }
+    
+    #navigation-top {
+        float: right;
+    }
+    
+    #navigation-top a:link {
+        display: inline-block;
+        width: 150px;
+        height: 100%;
+        border: none;
+    }
+
+main {
+    
+}
+
+.left {
+    float: left;
+}
+
+.right {
+    text-align: right;
+}
+
+.half {
+    width: 489px;
+}
+
+.lefthalf {
+    float: left;
+    width: 479px;
+    margin-right: 10px;
+}
+
+.righthalf {
+    float: right;
+    width: 479px;
+    margin-left: 10px;
+}
+
+.twothird {
+    float: left;
+    width: 642px;
+    margin-right: 10px;
+}
+
+.righttwothird {
+    float: right;
+    width: 642px;
+    margin-left: 10px;
+}
+
+.third {
+    float: right;
+    width: 316px;
+    margin-left: 10px;
+}
+
+footer {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    height: 120px;
+    line-height: 120px;
+    color: #eee;
+    background: #555;
+}
+
+.content {
+    width: 978px;
+    margin: 0 auto;
+}
+
+.bulletin-overview {
+    margin-top: 25px;
+}
+
+.userinput, .userlabel {
+    display: block;
+    margin: 15px 0;
+}
+
+.userinput, .usersubmit {
+    padding: 5px;
+    border: 1px solid #555;
+    border-radius: 3px;
+}
+
+.usersubmit {
+    background: #333;
+    color: #0bf;
+}
+
+#admin-sidebar {
+    float: left;
+    width: 305px;
+    margin-right: 10px;
+    padding-right: 10px;
+    border-right: 1px solid #aaa;
+}
+
+    #admin-sidebar a {
+        display: block;
+        text-align: right;
+        padding: 10px 0;
+    }

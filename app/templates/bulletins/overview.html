@@ -1,0 +1,9 @@
+{% extends 'layout.html' %}
+{% block body %}
+<h1>QDiNS Bulletins</h1>
+<article class='bulletin-overview'>
+    <h2>{{ bulletin.title }}</h2>
+    <span class='meta'>Posted on {{ bulletin.posttime }} about disaster '<a href='/disasters/{{ bulletin.bulletindisaster.id }}'>{{ bulletin.bulletindisaster.name }}</a>'.</span>
+    <p>{{ bulletin.body }}</p>
+</article>
+{% endblock %}
