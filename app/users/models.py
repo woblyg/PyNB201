@@ -1,4 +1,5 @@
 from app import db
+from datetime import datetime
 
 class User(db.Model):
     __tablename__ = 'users'
@@ -14,6 +15,7 @@ class User(db.Model):
         self.email = email
         self.password = password
         self.role = role
+        self.regtime = datetime.now()
     
     def __repr__(self):
         return('<User %r>' % (self.id))

@@ -1,0 +1,22 @@
+{% extends 'admin/layout.html' %}
+{% block adminbody %}
+<h3>User Management (<a href='/admin/users/add'>Add New User</a>)</h3>
+<table class='listing'>
+    <tr>
+        <th>User ID</th>
+        <th>Name</th>
+        <th>Email</th>
+        <th>Registration Time</th>
+        <th>Actions</th>
+    </tr>
+{% for user in users %}
+    <tr>
+        <td>{{ user.id }}</td>
+        <td>{{ user.name }}</td>
+        <td>{{ user.email }}</td>
+        <td>{{ user.regtime }}</td>
+        <td><a href='/admin/users/edit/{{ user.id }}'>Edit</a></td>
+    </tr>
+{% endfor %}
+</table>
+{% endblock %}

@@ -19,7 +19,8 @@ def admin():
 
 @mod.route('/admin/users')
 def admin_users():
-    return render_template('admin/users/index.html')
+    users = User.query.order_by(User.id.asc())
+    return render_template('admin/users/index.html', users = users)
 
 @mod.route('/admin/users/add', methods = ['GET', 'POST'])
 def admin_users_add():
@@ -29,9 +30,9 @@ def admin_users_add():
         user = User(request.form['user-name'], request.form['user-email'], generate_password_hash(request.form['user-password']), request.form['user-role'])
         db.session.add(user)
         db.session.commit()
-        return render_template(url_for('admin.admin_users') + '#add')
+        return redirect(url_for('admin.admin_users') + '#add')
 
-@mod.route('/admin/users/edit/<id>')
+@mod.route('/admin/users/edit/<id>', methods = ['GET', 'POST'])
 def admin_users_edit(id):
     user = User.query.get(id)
     if request.method == 'GET':
@@ -39,8 +40,11 @@ def admin_users_edit(id):
     else:
         user.name = request.form['user-name']
         user.email = request.form['user-email']
+        if request.form['user-password'] != '':
+            user.password = generate_password_hash(request.form['user-password'])
+        user.role = request.form['user-role']
         db.session.commit()
-        return render_template(url_for('admin.admin_users') + '#edit')
+        return redirect(url_for('admin.admin_users') + '#edit')
 
 @mod.route('/admin/disasters')
 def admin_disasters():
@@ -54,7 +58,7 @@ def admin_disasters_add():
         disaster = Disaster(request.form['disaster-name'], request.form['disaster-location'], request.form['disaster-severity'], request.form['disaster-type'])
         db.session.add(disaster)
         db.session.commit()
-        return render_template(url_for('admin.admin_disasters') + '#add')
+        return redirect(url_for('admin.admin_disasters') + '#add')
     
 @mod.route('/admin/disasters/edit/<id>')
 def admin_disasters_edit(id):
@@ -67,7 +71,7 @@ def admin_disasters_edit(id):
         disaster.severity = request.form['disaster-severity']
         disaster.type = request.form['disaster-type']
         db.session.commit()
-        return render_template(url_for('admin.admin_disasters') + '#edit')
+        return redirect(url_for('admin.admin_disasters') + '#edit')
 
 @mod.route('/admin/personnel')
 def admin_personnel(id):
@@ -81,7 +85,7 @@ def admin_personnel_add():
         personnel = Personnel(request.form['personnel-name'], request.form['personnel-email'], request.form['personnel-location'], request.form['personnel-role'])
         db.session.add(personnel)
         db.session.commit()
-        return render_template(url_for('admin.admin_personnel') + '#add')
+        return redirect(url_for('admin.admin_personnel') + '#add')
 
 @mod.route('/admin/personnel/edit/<id>', methods = ['GET', 'POST'])
 def admin_personnel_edit(id):
@@ -98,4 +102,4 @@ def admin_personnel_edit(id):
             personnel.deployed = 1
         personnel.role = request.form['role']
         db.session.commit()
-        return render_template(url_for('admin.admin_personnel') + '#edit')
+        return redirect(url_for('admin.admin_personnel') + '#edit')

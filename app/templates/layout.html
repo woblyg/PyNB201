@@ -14,7 +14,11 @@
                     <a href='/'>Home</a>
                     <a href='/bulletins'>Bulletins</a>
                     <a href='/disasters'>Disasters</a>
+                    {% if g.user %}
+                    <a href='/logout'>Logout ({{ g.user.name }})</a>
+                    {% else %}
                     <a href='/login'>Staff Login</a>
+                    {% endif %}
                     {% if g.user and g.user.role > 3 %}
                     <a href='/admin'>Admin</a>
                     {% endif %}

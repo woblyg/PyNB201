@@ -169,3 +169,23 @@ footer {
         text-align: right;
         padding: 10px 0;
     }
+
+.listing {
+    width: 100%;
+}
+
+.listing td {
+    text-align: center;
+}
+
+.inlineinput {
+    width: 240px;
+    padding: 3px;
+    margin: 5px 0;
+    border: 1px solid #ccc;
+    border-radius: 3px;
+}
+
+select.inlineinput {
+    width: 250px;
+}
