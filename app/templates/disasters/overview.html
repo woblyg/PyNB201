@@ -1,0 +1,33 @@
+{% extends 'layout.html' %}
+{% block body %}
+<script src='https://maps.googleapis.com/maps/api/js?v=3.exp&sensor=false&language=en'></script>
+<h1>Disaster Tracker</h1>
+<article class='bulletin-overview'>
+    <h2>{{ disaster.name }}: Level {{ disaster.severity }} ({{ disaster.getSeverity() }}) {{ disaster.getType() }}</h2>
+    <span class='meta'>Last updated {{ disaster.reporttime }}.</span>
+    <section id='map-canvas'>
+    </section>
+</article>
+<script>
+    function initialize() {
+        geocoder = new google.maps.Geocoder();
+        var mapOptions = {
+            zoom: 12,
+            mapTypeId: google.maps.MapTypeId.ROADMAP
+        };
+        
+        var map = new google.maps.Map(document.getElementById('map-canvas'), mapOptions);
+    
+        geocoder.geocode( { 'address': "{{ disaster.location }} QLD AU" }, function(results, status) {
+            if (status == google.maps.GeocoderStatus.OK) {
+            map.setCenter(results[0].geometry.location);
+            var marker = new google.maps.Marker({
+                map: map,
+                position: results[0].geometry.location
+            });
+        }
+        });
+    }
+    initialize();
+</script>
+{% endblock %}

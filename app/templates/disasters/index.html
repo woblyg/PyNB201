@@ -1,0 +1,7 @@
+{% extends 'layout.html' %}
+{% block body %}
+<h1>Disaster Tracker</h1>
+{% for disaster in disasters%}
+<h2><a href='/disasters/{{ disaster.id }}'>{{ disaster.name }} : Class {{ disaster.severity }} ({{ disaster.getSeverity() }}) {{ disaster.getType() }}</a></h2>
+{% endfor %}
+{% endblock %}

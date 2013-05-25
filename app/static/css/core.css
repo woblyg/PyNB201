@@ -189,3 +189,8 @@ footer {
 select.inlineinput {
     width: 250px;
 }
+
+#map-canvas {
+    width: 400px;
+    height: 300px;
+}

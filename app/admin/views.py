@@ -48,7 +48,8 @@ def admin_users_edit(id):
 
 @mod.route('/admin/disasters')
 def admin_disasters():
-    return render_template('admin/disasters/index.html')
+    disasters = Disaster.query.order_by(Disaster.id.asc())
+    return render_template('admin/disasters/index.html', disasters = disasters)
 
 @mod.route('/admin/disasters/add', methods = ['GET', 'POST'])
 def admin_disasters_add():

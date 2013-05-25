@@ -1,0 +1,22 @@
+{% extends 'admin/layout.html' %}
+{% block adminbody %}
+<h3>Disaster Management (<a href='/admin/disasters/add'>Add New Disaster</a>)</h3>
+<table class='listing'>
+    <tr>
+        <th>Disaster ID</th>
+        <th>Name</th>
+        <th>Severity</th>
+        <th>Location</th>
+        <th>Actions</th>
+    </tr>
+{% for disaster in disasters %}
+    <tr>
+        <td>{{ disaster.id }}</td>
+        <td>{{ disaster.name }}</td>
+        <td>{{ disaster.severity }} ({{ disaster.getSeverity() }})</td>
+        <td>{{ disaster.location }}</td>
+        <td><a href='/admin/disasters/edit/{{ disaster.id }}'>Edit</a></td>
+    </tr>
+{% endfor %}
+</table>
+{% endblock %}

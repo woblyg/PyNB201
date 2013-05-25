@@ -1,0 +1,32 @@
+{% extends 'admin/layout.html' %}
+{% block adminbody %}
+<h3>Add User</h3>
+<form id='user-edit' action='/admin/users/add' method='post'>
+    <p>
+        <input id='user-name' class='inlineinput' name='user-name' type='text'>
+        <label for='user-name'>User Name</label>
+    </p>
+    <p>
+        <input id='user-email' class='inlineinput' name='user-email' type='text'>
+        <label for='user-email'>User Email</label>
+    </p>
+    <p>
+        <input id='user-password' class='inlineinput' name='user-password' type='password'>
+        <label for='user-password'>Password</label>
+    </p>
+    <p>
+        <select id='user-role' class='inlineinput' name='user-role'>
+            <option value='1'>Official</option>
+            <option value='2'>Premier</option>
+            {% if g.user.role == 5 %}
+            <option value='3'>Data Maintenance</option>
+            <option value='5'>Sysop</option>
+            {% endif %}
+        </select>
+        <label for='user-role'>User Role</label>
+    </p>
+    <p>
+        <input id='user-submit' class='usersubmit' name='user-submit' type='submit'>
+    </p>
+</form>
+{% endblock %}

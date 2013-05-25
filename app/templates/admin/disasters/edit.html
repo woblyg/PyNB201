@@ -1,0 +1,32 @@
+{% extends 'admin/layout.html' %}
+{% block adminbody %}
+<h3>Edit User {{ user.id }}: {{ user.name }}</h3>
+<form id='user-edit' action='/admin/users/edit/{{ user.id }}' method='post'>
+    <p>
+        <input id='user-name' class='inlineinput' name='user-name' type='text' value='{{ user.name }}'>
+        <label for='user-name'>User Name</label>
+    </p>
+    <p>
+        <input id='user-email' class='inlineinput' name='user-email' type='text' value='{{ user.email}}'>
+        <label for='user-email'>User Email</label>
+    </p>
+    <p>
+        <input id='user-password' class='inlineinput' name='user-password' type='password'>
+        <label for='user-password'>Password (Leave blank to not change)</label>
+    </p>
+    {% if g.user.role == 5 %}
+    <p>
+        <select id='user-role' class='inlineinput' name='user-role'>
+            <option value='1'>Official</option>
+            <option value='2'>Data Maintainance</option>
+            <option value='3'>Premier</option>
+            <option value='5'>Sysop</option>
+        </select>
+        <label for='user-role'>User Role</label>
+    </p>
+    <p>
+        <input id='user-submit' class='usersubmit' name='user-submit' type='submit'>
+    </p>
+    {% endif %}
+</form>
+{% endblock %}
